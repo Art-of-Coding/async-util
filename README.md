@@ -1,6 +1,6 @@
-# WS
+# async-util
 
-Three simple, asynchronous methods that may make life easier.
+A couple of simple, asynchronous methods that may make life easier.
 
 All methods return a Promise.
 
