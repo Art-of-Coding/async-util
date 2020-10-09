@@ -4,6 +4,12 @@ A couple of simple, asynchronous methods that may make life easier.
 
 All methods return a Promise.
 
+## Install
+
+```
+npm i @art-of-coding/async-util [--save]
+```
+
 ## Methods
 
 ### `wait (ms: number)`
