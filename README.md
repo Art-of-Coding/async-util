@@ -139,6 +139,6 @@ async function run () {
 
 ## License
 
-Copyright 2017 [Art of Coding](http://artofcoding.nl).
+Copyright 2020 [Art of Coding](http://artofcoding.nl).
 
 This software is licensed under the [MIT License](LICENSE).
