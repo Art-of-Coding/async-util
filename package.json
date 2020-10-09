@@ -1,0 +1,31 @@
+{
+	"name": "@art-of-coding/async-util",
+	"version": "0.0.1",
+	"description": "A set of async utility helpers",
+	"author": {
+		"name": "Michiel van der Velde",
+		"email": "michiel@michielvdvelde.nl",
+		"url": "http://michielvdvelde.nl"
+	},
+	"license": "MIT",
+	"keywords": [
+		"async",
+		"await",
+		"utility",
+		"helper"
+	],
+	"engines": {
+		"node": "=>10"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/Art-of-Coding/async-util.git"
+	},
+	"bugs": {
+		"url": "https://github.com/Art-of-Coding/async-util/issues"
+	},
+	"homepage": "https://github.com/Art-of-Coding/async-util",
+	"devDependencies": {
+		"@types/node": "^14.11.5"
+	}
+}
