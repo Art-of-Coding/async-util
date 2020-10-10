@@ -23,10 +23,10 @@ export async function wait (
   return new Promise(resolve => setTimeout(resolve, ms))
 }
 
-export async function waitUntil (
+export async function waitUntil<T = any> (
   event: string,
   emitter: EventEmitter
-) {
+): Promise<T> {
   if (typeof event !== 'string') {
     throw new TypeError('expected first argument to be a string')
   }
@@ -35,14 +35,14 @@ export async function waitUntil (
     throw new TypeError('expected second argument to be an event emitter')
   }
 
-  return new Promise(resolve => emitter.once(event, (...args) => resolve(args)))
+  return new Promise(resolve => emitter.once(event, (...args) => resolve(<any>args)))
 }
 
-export async function waitOrTimeout (
+export async function waitOrTimeout<T = any> (
   event: string,
   ms: number,
   emitter: EventEmitter
-) {
+): Promise<T> {
   if (typeof event !== 'string') {
     throw new TypeError('expected first argument to be a string')
   }
@@ -60,7 +60,7 @@ export async function waitOrTimeout (
 
     const onEvent = (...args: any[]) => {
       clearTimeout(timeout)
-      resolve(args)
+      resolve(<any>args)
     }
 
     const onTimeout = () => {
@@ -73,11 +73,11 @@ export async function waitOrTimeout (
   })
 }
 
-export async function waitOrError (
+export async function waitOrError<T = any> (
   event: string,
   emitter: EventEmitter,
   errorEvent = 'error'
-) {
+): Promise<T> {
   if (typeof event !== 'string') {
     throw new TypeError('expected first argument to be a string')
   }
@@ -93,7 +93,7 @@ export async function waitOrError (
   return new Promise((resolve, reject) => {
     const onEvent = (...args: any[]) => {
       emitter.removeListener(errorEvent, onError)
-      resolve(args)
+      resolve(<any>args)
     }
 
     const onError = (err: Error) => {
@@ -106,11 +106,11 @@ export async function waitOrError (
   })
 }
 
-export async function resolveOrReject (
+export async function resolveOrReject<T = any> (
   resolveEvents: string[],
   rejectEvents: string[],
   emitter: EventEmitter
-) {
+): Promise<T> {
   if (!Array.isArray(resolveEvents)) {
     throw new TypeError('expected first argument to be an array')
   }
@@ -136,7 +136,7 @@ export async function resolveOrReject (
 
     const onResolveEvent = (...args: any[]) => {
       removeListeners()
-      resolve(args)
+      resolve(<any>args)
     }
 
     const onRejectEvent = (err: Error) => {
@@ -154,12 +154,12 @@ export async function resolveOrReject (
   })
 }
 
-export function waitFor (
+export function waitFor<T = any> (
   resolveEvents: string[],
   rejectEvents: string[],
   timeout: number,
   emitter: EventEmitter
-) {
+): Promise<T> {
   if (!Array.isArray(resolveEvents)) {
     throw new TypeError('expected first argument to be an array')
   }
@@ -191,7 +191,7 @@ export function waitFor (
     if (!fired) {
       fired = true
       teardown()
-      resolvePromise(...args)
+      resolvePromise(args)
     }
   }
 
